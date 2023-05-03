@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register and Broadcast Node</title>
+    <style>
+      body {
+        font-family: "Amazon Ember", Arial, sans-serif;
+        background-color: #f7f7f7;
+        color: #333333;
+       
+      }
+      nav {
+        background-color: #f7f7f7;
+        position: relative;;
+        }
+nav ul {
+  margin: 0;
+}
+#start-consensus-btn {
+  
+        background-color: #007bff;
+        color: #ffffff;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        border: none;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+}
+#start-consensus-btn:hover {
+  
+  background-color: #096bd3;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 20%;
+}
+
+li a {
+  display: block;
+  color: gray;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  
+  color: #ec7211;
+}
+
+      label {
+        font-size: 1.2rem;
+      }
+      input {
+        background-color: #ffffff;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid #d4d4d4;
+        margin-top: 0.5rem;
+      }
+      #center-heading {
+        text-align: center;
+        font-size: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 0;
+      }
+      #newNodeUrl {
+        width: 40%;
+        font-size: 1rem;
+      }
+      #register-and-broadcast-node {
+        text-align: center;
+        margin-top: 20px;
+        border: 1px solid #232f3e;
+        border-radius: 4px;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+        padding: 16px;
+        margin-bottom: 24px;
+      }
+      #register-node-button {
+        background-color: #ec7211;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px auto 0;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      #amount {
+        width: 40%;
+        font-size: 1rem;
+      }
+      #sender {
+        width: 40%;
+        font-size: 1rem;
+      }
+      #recipient {
+        width: 40%;
+        font-size: 1rem;
+      }
+      #title,
+      #content,
+      #author,
+      #date {
+        width: 30%;
+        font-size: 1rem;
+      }
+      #create-and-broadcast-transaction {
+        text-align: center;
+        margin-top: 20px;
+        border: 1px solid #232f3e;
+        border-radius: 4px;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+        padding: 16px;
+        margin-bottom: 24px;
+      }
+      #create-transaction-button,
+      #create-data-button {
+        background-color: #ec7211;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px auto 0;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      #create-and-broadcast-data {
+        text-align: center;
+        margin-top: 20px;
+      }
+      #register-and-broadcast-node, #create-and-broadcast-transaction,#create-and-broadcast-data {
+  border: 1px solid #232f3e;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+#create-transaction-form label {
+  display: inline-block;
+  width: 100px;
+}
+
+#create-transaction-form input {
+  display: inline-block;
+  width: 400px;
+}
+#broadcast-data-form label {
+  display: inline-block;
+  width: 100px;
+}
+
+#broadcast-data-form input {
+  display: inline-block;
+  width: 400px;
+}
+.form-control {
+  background-color: transparent;
+  border: none;
+  font-size: medium;
+}
+
+    </style>
+    
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <!-- <select class="form-control" onchange="window.location.href=this.value">
+            <option title="Create">Create</option>
+            <option value="#create-and-broadcast-data" title="Create copyright work">Work</option>
+            <option value="#create-and-broadcast-transaction" title="Create transaction">Transaction</option>
+            >
+          </select> -->
+          <a id="blockchain-link" href="#">Blockchain</a>
+        </li>
+      </ul>
+      <button id="start-consensus-btn">Start Consensus</button>
+    </nav>
+    
+    
+    <h1 id="center-heading">Node 1</h1>
+    <div id="register-and-broadcast-node">
+    <form>
+      <label id="newNodeUrlLabel" for="newNodeUrl">New Node URL:</label>
+      <input type="text" id="newNodeUrl" name="newNodeUrl" placeholder="Enter URL">
+      <button id="register-node-button" type="submit">Register and Broadcast Node</button>
+    </form>
+    </div>
+    <div id="create-and-broadcast-data">
+      <form id="broadcast-data-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="Copyright work title" required><br><br>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" placeholder="Name of the author" required><br><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" rows="4" cols="50" placeholder="Enter copyright work content" required></textarea><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+        <button id="create-data-button" type="submit"> Create and broadcast Copyright Work</button>
+      </form>
+    </div>
+    <div id="create-and-broadcast-transaction">
+      <form id="create-transaction-form">
+        <label id="amountLabel" for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+        <br>
+        <label id="senderLabel" for="sender">Sender:</label>
+        <input type="text" id="sender" name="sender" placeholder="Enter sender" required>
+        <br>
+        <label id="recipientLabel" for="recipient">Recipient:</label>
+        <input type="text" id="recipient" name="recipient" placeholder="Enter recipient" required>
+        <br>
+        <button id="create-transaction-button" type="submit">Create and Broadcast Transaction</button>
+      </form>
+    </div>
+    <script>
+      const form = document.querySelector('form');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const data = { newNodeUrl: document.querySelector('#newNodeUrl').value };
+        fetch('/register-and-broadcast-node', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log('Node registered and broadcasted successfully');
+            alert('New node registered with network succesfully.');
+          } else {
+            console.error('An error occurred');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      });
+    </script>
+    <script>
+      const heading = document.getElementById('center-heading');
+      const port = window.location.port.split('')[3];
+      heading.textContent = `Node ${port}`;
+
+    </script>
+       <script>
+        const formTransaction = document.querySelector('#create-transaction-form');
+        formTransaction.addEventListener('submit', e => {
+        e.preventDefault();
+        const data = {
+            amount: document.querySelector('#amount').value,
+            sender: document.querySelector('#sender').value,
+            recipient: document.querySelector('#recipient').value
+    };
+    fetch('/transaction/broadcast', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        alert(data.note);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while creating and broadcasting the transaction.');
+      });
+  });
+  </script>
+  <script>
+    const formBroadcastData = document.querySelector('#broadcast-data-form');
+
+    formBroadcastData.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const data = {
+        title: document.querySelector('#title').value,
+        author: document.querySelector('#author').value,
+        content: document.querySelector('#content').value,
+        date: document.querySelector('#date').value
+      };
+
+      fetch('/data/broadcast', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {console.log(data); alert(data.note); })
+      .catch(error => console.error(error));
+    });
+  </script>
+  <script>
+    const blockchainLink = document.getElementById("blockchain-link");
+    blockchainLink.href = "/blockchain-web-interface";
+
+  </script>
+  </body>
+</html>
+
+

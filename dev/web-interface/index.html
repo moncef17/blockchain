@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Start Nodes!</title>
+  <script src="./script.js"></script>
+	<style>
+        body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+.div-btn {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+button {
+  background-color: red;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: x-large;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: grey;
+}
+button:active {
+  background-color: rgb(92, 92, 92);
+}
+
+    </style>
+</head>
+<body>
+	<h1>Start Nodes!</h1>
+	<p>Press the button to start the Node working.</p>
+	<div class="dive-btn">
+		<button id="node-1">Node 1</button>
+		<button id="node-2">Node 2</button>
+		<button id="node-3">Node 3</button>
+		<button id="node-4">Node 4</button>
+		<button id="node-5">Node 5</button>
+	</div>
+    <script>
+        
+
+
+const buttons = document.querySelectorAll('button');
+
+function startNode(node) {
+  fetch(`http://localhost:3000/start-${node}`)
+    .then(response => {
+      if (response.ok) {
+        console.log('Command executed successfully');
+      } else {
+        console.error('An error occurred');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+for (let i = 0; i < buttons.length; i++) {
+  const button = buttons[i];
+  const nodeId = i + 1;
+  button.addEventListener('click', () => {
+    startNode(`node${nodeId}`);
+    button.style.backgroundColor = 'green';
+    alert(`Node ${nodeId} Is Running`);
+  });
+}
+
+    </script>
+</body>
+</html>

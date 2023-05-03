@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blockchain</title>
+    <style>
+      #blockchain {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin: 20px auto;
+        max-width: 800px;
+      }
+
+      .block {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+
+      .table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .table-header {
+        background-color: #ddd;
+        font-weight: bold;
+        display: table-row;
+      }
+
+      .table-header-cell,
+      .table-cell {
+        padding: 10px;
+        text-align: left;
+        display: table-cell;
+      }
+
+      .table-row:nth-child(odd) {
+        background-color: #f2f2f2;
+      }
+
+      .table-row {
+        display: table-row;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="well well-success" id="block1chain1well">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="block1chain1number">Block:</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <span class="input-group-addon">#</span>
+          <input class="form-control" id="block1chain1number" type="number" value="1">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="block1chain1nonce">Nonce:</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="block1chain1nonce" type="text" value="72608">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="block1chain1data">Data:</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="block1chain1data" rows="10"></textarea>
+      </div>
+    </div>
+    <div class="form-group" id="state">
+      <label class="col-sm-2 control-label" for="block1chain1hash">Hash:</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="block1chain1hash" type="text" disabled="">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <i class="icon-spinner icon-spin icon-large"></i>
+      </div>
+      <div class="col-sm-10">
+        <button class="btn btn-primary ladda-button" id="block1chain1mineButton" data-style="expand-right">
+          <span class="ladda-label">Mine</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+    <div id="blockchain"></div>
+    <script>
+      const blockchainDiv = document.getElementById('blockchain');
+
+      async function getBlockchain() {
+        try {
+          const response = await fetch('/blockchain');
+          const blockchain = await response.json();
+          const blocks = blockchain.chain.map((block) => {
+            return `
+              <div class="block">
+                <h3>Block ${block.index}</h3>
+                <div class="table">
+                  <div class="table-header">
+                    <div class="table-header-cell">Attribute</div>
+                    <div class="table-header-cell">Value</div>
+                  </div>
+                  <div class="table-row">
+                    <div class="table-cell">Index</div>
+                    <div class="table-cell">${block.index}</div>
+                  </div>
+                  <div class="table-row">
+                    <div class="table-cell">Timestamp</div>
+                    <div class="table-cell">${new Date(block.timestamp).toLocaleString()}</div>
+                  </div>
+                  <div class="table-row">
+                    <div class="table-cell">Hash</div>
+                    <div class="table-cell">${block.hash}</div>
+                  </div>
+                  <div class="table-row">
+                    <div class="table-cell">Previous Block Hash</div>
+                    <div class="table-cell">${block.previousBlockHash}</div>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          blockchainDiv.innerHTML = blocks.join('');
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      getBlockchain();
+    </script>
+  </body>
+</html>
